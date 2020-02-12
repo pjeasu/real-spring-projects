@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 객체생성을 xml 파일로 !!!  -->	
+	<!-- Calculation calculation = new com.javalec.ex.Calculation() -->
+
+	<bean id = "calculator" class = "com.javalec.ex.Calculation"/>
+	<!-- bean은 new의 역할을 함 = 객체생성 ! id 값이 변수명이 됨 -->
+
+	<bean id = "myCalculation" class = "com.javalec.ex.MyCalculation">
+		<property name = "calculator">
+		<!-- myCalculator.setCalulator(calculator) >> set의 역할  -->
+			<ref bean = "calculator"/>
+			<!-- 위의 bean id calculator(변수)에  calculator 값을 set함 -->
+		</property> 
+				
+		<!-- myCalculator.setFirstNum(10); -->
+		<property name = "firstNum" value = "10"></property>
+		<property name = "secondNum" value = "2"></property>
+		</bean>
+</beans>
+
+
+
+

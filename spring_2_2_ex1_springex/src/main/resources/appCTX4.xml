@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	
+	<bean id = "gradeCal" class = "com.javalec.ex.GradeCal">
+		<property name="A">
+			<value>90</value>
+		</property>
+		<property name="B">
+			<value>80</value>
+		</property>
+		<property name="C">
+			<value>70</value>
+		</property>
+		<property name="D">
+			<value>60</value>
+		</property>		
+	</bean>
+	
+	<bean id = "grade" class = "com.javalec.ex.Grade">
+		<property name="kor">
+			<value>87</value>
+		</property>
+		<property name="math">
+			<value>77</value>
+		</property>
+		<property name="eng">
+			<value>99</value>
+		</property>
+		
+		<property name="gradeCal">
+			<ref bean = "gradeCal"/>
+		</property>
+
+	</bean>
+	
+
+</beans>
+
+
+
+

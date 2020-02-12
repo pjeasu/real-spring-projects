@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/sqlmap/*.xml" />
+	</bean>
+	<!-- 위에서 커넥션풀 만들고, 해당 커넥션 풀에다가 SQL섹션을 만드는 빈을 하나 생성하여 값을 set한다.  -->
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<!-- 인덱스가 0이라는 뜻은 생성자를 배열로 받는데, 첫번째로 팩토리 객체를 넣는다는 뜻 
+			 이 sqlSession이 바로 마이바티스 !!!!! -->
+		
+	</bean>	
+	
+	<!-- 	3번과 4번 방식을 사용하기 위한 방식임  -->
+	<!-- 	Mapper Interface -->
+	<mybatis-spring:scan base-package="edu.bit.ex.*"/> 
+	
+	
+		
+</beans>
+
+
+
